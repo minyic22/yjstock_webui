@@ -131,7 +131,7 @@ function SearchAutocompleteBox(props: SearchAutocompleteBoxProps) {
             options={options}
             onInputChange={handleInputChange}
             onChange={(event: any, newValue: Option | null) => {
-                // console.log(newValue)
+                console.log(event, newValue)
             }}
             isOptionEqualToValue={(option, value) => option['1. symbol'] === value['1. symbol']}
 
@@ -560,7 +560,7 @@ export default function WatchlistComponent() {
 
     const getUpdatedPrice = async () => {
         const updatedStocks = await Promise.all(stocks.map(async stock => {
-            const response = await axios.get(`stock/time_series/${stock.symbol}/quote_endpoint/`);
+            const response = await axios.get(`stock/data/${stock.symbol}/quote_endpoint/`);
             let globalQuote: GlobalQuote = response.data["Global Quote"];
             return {...stock, price: parseFloat(globalQuote["05. price"])};
         }));

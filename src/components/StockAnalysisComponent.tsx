@@ -4,22 +4,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CandleStickChart from "./visualisation/CandleStickChart";
+import CandleStickChart from "./stock_analysis/visualisation/CandleStickChart";
 import {StockRecord} from "../types/timeseries";
 import axios from "axios";
-
-
-const FUNCTION_MAP = [
-    'intraday',
-    'intraday_extended',
-    'daily',
-    'daily_adjusted',
-    'weekly',
-    'weekly_adjusted',
-    'monthly',
-    'monthly_adjusted',
-    'quote_endpoint',
-]
+import OverviewComponent from "./stock_analysis/OverviewComponent";
 
 
 interface TabPanelProps {
@@ -77,7 +65,7 @@ export default function BasicTabs() {
         }
     }
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         async function getTimeSeries(function_name: string, data_key: string) {
             let response = await axios.get(`stock/time_series/${symbol}/${function_name}/`);
             let ts_data = response.data[data_key];
@@ -116,7 +104,7 @@ export default function BasicTabs() {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    Item One
+                    <OverviewComponent/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     Item Two

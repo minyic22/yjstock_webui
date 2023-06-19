@@ -1,5 +1,5 @@
 import {useEffect, useRef} from "react";
-import {StockRecord, AdjustedStockRecord, DailyAdjustedStockRecord} from "../../types/timeseries";
+import {StockRecord, AdjustedStockRecord, DailyAdjustedStockRecord} from "../../../types/timeseries";
 import * as d3 from "d3";
 
 interface CandleStickChartProps {
@@ -72,12 +72,12 @@ export default function CandleStickChart({stockRecords}: CandleStickChartProps) 
             .attr('y', marginTop);
 
         // Append the x-axis.
-        const xAxis = svg.append("g")
+        svg.append("g")
             .attr("class", "x-axis")
             .attr("transform", `translate(0,${height - marginBottom})`)
             .call(d3.axisBottom(xScale));  // d3.axisBottom creates the x-axis
 
-        const yAxis = svg.append("g")
+        svg.append("g")
             .attr("class", "y-axis")
             .attr("transform", `translate(${marginLeft},0)`)
             .call(d3.axisLeft(yScale));  // d3.axisLeft creates the y-axis
