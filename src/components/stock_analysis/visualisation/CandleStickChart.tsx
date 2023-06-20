@@ -6,7 +6,8 @@ interface CandleStickChartProps {
     stockRecords: (StockRecord | AdjustedStockRecord | DailyAdjustedStockRecord)[];
 }
 
-export default function CandleStickChart({stockRecords}: CandleStickChartProps) {
+export default function CandleStickChart(candleStickChartProps: CandleStickChartProps) {
+    const {stockRecords} = candleStickChartProps;
 
     const chartRef = useRef<SVGSVGElement>(null);
 
